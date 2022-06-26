@@ -29,12 +29,21 @@ const storePizzas = localStorage.setItem('pizzas', JSON.stringify(pizzas));
 // }
 
 
+
+
 verPizza.addEventListener('click', (e) =>{
+    while(contenedorCards.firstChild){
+        contenedorCards.removeChild(contenedorCards.firstChild)
+    }
+
     
     const inputValue= idPizza.value;
     pizzaFind = pizzas.find((pizza) => pizza.id == inputValue)
     if(!pizzaFind){
-        alert('Ingresa un valor valido')
+        alert('Ingresa un valor valido');
+        
+
+        
     }else{
         const newDiv = document.createElement(`div`);
         newDiv.setAttribute("id", "contenedores");
@@ -42,8 +51,10 @@ verPizza.addEventListener('click', (e) =>{
 
         const newimg = document.createElement(`img`);
         newimg.setAttribute("id", "imgPizza");
+        newimg.setAttribute("src", pizzaFind.imagen);
         newDiv.appendChild(newimg);
-
+        
+ 
 
         const newh2 = document.createElement(`h2`);
         newh2.setAttribute("id", "nombrePizza");
@@ -59,19 +70,25 @@ verPizza.addEventListener('click', (e) =>{
 
 
 
+        
+        
+
+        newh2.innerText = `Pizza de ${pizzaFind.nombre}`;
+        newh4.innerText = (`Ingredientes: ${pizzaFind.ingredientes}`);
+        newh4dos.innerText = (`Precio: $${pizzaFind.precio}`);
+        idPizza.value= '';
+        
 
         
 
-
-
-        const imagen= document.createElement('img');
-        imagen.setAttribute('src',pizzaFind.imagen);
-        imgPizza.appendChild(imagen);
-        imgPizza.removeChild(imgPizza.firstChild);
-        nombrePizza.innerText = `Pizza de ${pizzaFind.nombre}`;
-        ingredientesPizza.innerText = (`Ingredientes: ${pizzaFind.ingredientes}`);
-        precioPizza.innerText = (`Precio: $${pizzaFind.precio}`);
-        idPizza.value= '';
+        // const imagen= document.createElement('img');
+        // imagen.setAttribute('src',pizzaFind.imagen);
+        // imgPizza.appendChild(imagen);
+        // imgPizza.removeChild(imgPizza.firstChild);
+        // nombrePizza.innerText = `Pizza de ${pizzaFind.nombre}`;
+        // ingredientesPizza.innerText = (`Ingredientes: ${pizzaFind.ingredientes}`);
+        // precioPizza.innerText = (`Precio: $${pizzaFind.precio}`);
+        // idPizza.value= '';
     };
 })
 
